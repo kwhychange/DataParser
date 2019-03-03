@@ -53,7 +53,6 @@ public class Utils {
             int percentSign = fields.indexOf("%", secondParen);
             necessary = fields.substring(0, firstParen) + deleteComma(fields.substring(firstParen + 1, secondParen))
                     + fields.substring(secondParen + 1, percentSign)+ fields.substring(percentSign + 1);
-            System.out.println("*");
         } else {
             int percentSign = fields.indexOf("%");
             necessary = fields.substring(0, percentSign) + fields.substring(percentSign + 1);
