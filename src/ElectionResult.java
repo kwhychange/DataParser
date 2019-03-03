@@ -1,8 +1,9 @@
 public class ElectionResult {
-    private double votes_dem, votes_gop, total_votes, per_dem, per_gop, diff, per_point_diff, combined_fips;
+    private double votes_dem, votes_gop, total_votes, per_dem, per_gop, per_point_diff;
+    private int diff, combined_fips;
     private String state_abbr, county_name;
 
-    public ElectionResult(double votes_dem, double votes_gop, double total_votes, double per_dem, double per_gop, double diff, double per_point_diff, double combined_fips, String state_abbr, String county_name) {
+    public ElectionResult(double votes_dem, double votes_gop, double total_votes, double per_dem, double per_gop, int diff, double per_point_diff, String state_abbr, String county_name, int combined_fips) {
         this.votes_dem = votes_dem;
         this.votes_gop = votes_gop;
         this.total_votes = total_votes;
@@ -59,7 +60,7 @@ public class ElectionResult {
         return diff;
     }
 
-    public void setDiff(double diff) {
+    public void setDiff(int diff) {
         this.diff = diff;
     }
 
@@ -75,7 +76,7 @@ public class ElectionResult {
         return combined_fips;
     }
 
-    public void setCombined_fips(double combined_fips) {
+    public void setCombined_fips(int combined_fips) {
         this.combined_fips = combined_fips;
     }
 
