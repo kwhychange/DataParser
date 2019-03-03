@@ -95,4 +95,9 @@ public class ElectionResult {
     public void setCounty_name(String county_name) {
         this.county_name = county_name;
     }
+
+    public String toString(){
+        return getVotes_dem() + ", " + getVotes_gop() + ", " + getTotal_votes() + ", " + getPer_dem() + ", " + getPer_gop() + ", " + getDiff()
+                + ", " + getPer_point_diff() + ", " + getState_abbr() + ", " + getCounty_name() + ", " + getCombined_fips();
+    }
 }
