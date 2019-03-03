@@ -56,7 +56,7 @@ public class ElectionResult {
         this.per_gop = per_gop;
     }
 
-    public double getDiff() {
+    public int getDiff() {
         return diff;
     }
 
@@ -72,7 +72,7 @@ public class ElectionResult {
         this.per_point_diff = per_point_diff;
     }
 
-    public double getCombined_fips() {
+    public int getCombined_fips() {
         return combined_fips;
     }
 
