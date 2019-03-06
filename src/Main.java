@@ -5,5 +5,8 @@ public class Main {
         String data = Utils.readFileAsString("data/2016_Presidential_Results.csv");
 
         ArrayList<ElectionResult> results = Utils.parse2016ElectionResults(data);
+        for (ElectionResult result: results) {
+            System.out.println(result.toString());
+        }
     }
 }

@@ -55,11 +55,8 @@ public class Utils {
     }
 
     private static String deleteComma(String substring) {
-        String[] splitComma = substring.split(",");
-        String deleted = "";
-        for (String string : splitComma) {
-            deleted += string;
-        }
-        return deleted;
+        if(substring.equals(",")) return "";
+        if(substring.indexOf(",") < 0) return substring;
+        return deleteComma(substring.substring(0,1)) + deleteComma(substring.substring(1));
     }
 }
