@@ -31,15 +31,9 @@ public class Utils {
 
             //hard coding everything
             String[] splitFields = newField.split(",");
-            double parse0 = Double.parseDouble(splitFields[0]);
-            double parse1 = Double.parseDouble(splitFields[1]);
-            double parse2= Double.parseDouble(splitFields[2]);
-            double parse3 = Double.parseDouble(splitFields[3]);
-            double parse4 = Double.parseDouble(splitFields[4]);
-            int parse5 = Integer.parseInt(splitFields[5]);
-            double parse6 = Double.parseDouble(splitFields[6]);
-            int parse9 = Integer.parseInt(splitFields[9]);
-            ElectionResult addNew = new ElectionResult(parse0, parse1, parse2, parse3, parse4, parse5, parse6, splitFields[7], splitFields[8], parse9);
+            ElectionResult addNew = new ElectionResult(Double.parseDouble(splitFields[0]), Double.parseDouble(splitFields[1]), Double.parseDouble(splitFields[2]),
+                    Double.parseDouble(splitFields[3]), Double.parseDouble(splitFields[4]), Integer.parseInt(splitFields[5]), Double.parseDouble(splitFields[6]),
+                    splitFields[7], splitFields[8], Integer.parseInt(splitFields[9]));
             results.add(addNew);
         }
         return results;
@@ -48,11 +42,11 @@ public class Utils {
     private static String deleteUnnecessary(String fields) {
         String necessary = "";
         int firstParen = fields.indexOf("\"");
-        if(firstParen > 0) {
+        if (firstParen > 0) {
             int secondParen = fields.indexOf("\"", firstParen + 1);
             int percentSign = fields.indexOf("%", secondParen);
             necessary = fields.substring(0, firstParen) + deleteComma(fields.substring(firstParen + 1, secondParen))
-                    + fields.substring(secondParen + 1, percentSign)+ fields.substring(percentSign + 1);
+                    + fields.substring(secondParen + 1, percentSign) + fields.substring(percentSign + 1);
         } else {
             int percentSign = fields.indexOf("%");
             necessary = fields.substring(0, percentSign) + fields.substring(percentSign + 1);
@@ -63,7 +57,7 @@ public class Utils {
     private static String deleteComma(String substring) {
         String[] splitComma = substring.split(",");
         String deleted = "";
-        for(String string : splitComma){
+        for (String string : splitComma) {
             deleted += string;
         }
         return deleted;
