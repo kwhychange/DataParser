@@ -1,17 +1,17 @@
 import java.util.List;
 
 public class DataManager {
-    private List<State> statse;
+    private List<State> state;
 
     public DataManager(List<State> statse) {
-        this.statse = statse;
+        this.state = statse;
     }
 
-    public List<State> getStatse() {
-        return statse;
+    public List<State> getState() {
+        return state;
     }
 
-    public void setStatse(List<State> statse) {
-        this.statse = statse;
+    public void setState(List<State> state) {
+        this.state = state;
     }
 }
