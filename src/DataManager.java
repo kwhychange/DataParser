@@ -6,4 +6,12 @@ public class DataManager {
     public DataManager(List<State> statse) {
         this.statse = statse;
     }
+
+    public List<State> getStatse() {
+        return statse;
+    }
+
+    public void setStatse(List<State> statse) {
+        this.statse = statse;
+    }
 }
