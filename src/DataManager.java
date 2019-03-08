@@ -3,8 +3,8 @@ import java.util.List;
 public class DataManager {
     private List<State> state;
 
-    public DataManager(List<State> statse) {
-        this.state = statse;
+    public DataManager(List<State> state) {
+        this.state = state;
     }
 
     public List<State> getState() {
