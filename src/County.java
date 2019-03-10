@@ -5,7 +5,7 @@ public class County {
     private Education2016 educ2016;
     private Employment2016 employ2016;
 
-    public County(String name, int fips, Election2016 vote2016, Education2016 educ2016, Employment2016 employ2016) {
+    public County(String name, int fips) {
         this.name = name;
         this.fips = fips;
         this.vote2016 = vote2016;
@@ -51,5 +51,16 @@ public class County {
 
     public void setEmploy2016(Employment2016 employ2016) {
         this.employ2016 = employ2016;
+    }
+
+    @Override
+    public String toString() {
+        return "County{" +
+                "name='" + name + '\'' +
+                ", fips=" + fips +
+                ", vote2016=" + getVote2016().toString() +
+                ", educ2016=" + getEduc2016().toString() +
+                ", employ2016=" + getEmploy2016().toString() +
+                '}';
     }
 }

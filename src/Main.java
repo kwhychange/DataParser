@@ -2,9 +2,21 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        String data = Utils.readFileAsString("data/2016_Presidential_Results.csv");
+        String Election = Utils.readFileAsString("data/2016_Presidential_Results.csv");
+        String Education = Utils.readFileAsString("data/Education.csv");
+        String Employment = Utils.readFileAsString("data/Unemployment.csv");
 
-        ArrayList<ElectionResult> results = Utils.parse2016ElectionResults(data);
-        DataManager saveData = new DataManager();
+        DataManager essentialData = Utils.parseEssentialData(Election, Education, Employment);
+
+        for (State state: essentialData.getState()) {
+            for (County county : state.getCounties()){
+                System.out.println(state.getName() + "," + county.toString());
+            }
+        }
+
+//        ArrayList<ElectionResult> results= Utils.parse2016ElectionResults(Election);
+//        for(ElectionResult result:results){
+//            System.out.println(result.toString());
+//        }
     }
 }

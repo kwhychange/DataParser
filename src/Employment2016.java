@@ -1,6 +1,6 @@
 public class Employment2016 {
     private int totalLaborForce;
-    private int eployedLaborForce;
+    private int employedLaborForce;
     private int unemployedLaborForce;
     private double unemployedPercent;
 
@@ -12,12 +12,12 @@ public class Employment2016 {
         this.totalLaborForce = totalLaborForce;
     }
 
-    public int getEployedLaborForce() {
-        return eployedLaborForce;
+    public int getEmployedLaborForce() {
+        return employedLaborForce;
     }
 
-    public void setEployedLaborForce(int eployedLaborForce) {
-        this.eployedLaborForce = eployedLaborForce;
+    public void setEmployedLaborForce(int employedLaborForce) {
+        this.employedLaborForce = employedLaborForce;
     }
 
     public int getUnemployedLaborForce() {
@@ -36,9 +36,14 @@ public class Employment2016 {
         this.unemployedPercent = unemployedPercent;
     }
 
+    @Override
+    public String toString() {
+        return getTotalLaborForce() + "," + getEmployedLaborForce() + "," + getUnemployedLaborForce() + "," + getUnemployedPercent();
+    }
+
     public Employment2016(int totalLaborForce, int eployedLaborForce, int unemployedLaborForce, double unemployedPercent) {
         this.totalLaborForce = totalLaborForce;
-        this.eployedLaborForce = eployedLaborForce;
+        this.employedLaborForce = eployedLaborForce;
         this.unemployedLaborForce = unemployedLaborForce;
         this.unemployedPercent = unemployedPercent;
     }

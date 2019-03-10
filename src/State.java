@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class State {
@@ -12,16 +13,24 @@ public class State {
         this.name = name;
     }
 
+    public void addCounty(County county) {
+        counties.add(county);
+    }
+
+    public void removeCounty(County county) {
+        counties.remove(county);
+    }
+
+    public County removeCounty(int index){
+        return counties.remove(index);
+    }
+
     public List<County> getCounties() {
         return counties;
     }
 
-    public void setCounties(List<County> counties) {
-        this.counties = counties;
-    }
-
-    public State(String name, List<County> counties) {
+    public State(String name) {
         this.name = name;
-        this.counties = counties;
+        counties = new ArrayList<County>();
     }
 }

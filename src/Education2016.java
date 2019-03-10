@@ -42,4 +42,9 @@ public class Education2016 {
         this.someCollege = someCollege;
         this.bachelorsOrMore = bachelorsOrMore;
     }
+
+    @Override
+    public String toString() {
+        return getNoHighSchool() + "," + getOnlyHighSchool() + "," + getSomeCollege() + "," + getBachelorsOrMore();
+    }
 }
