@@ -8,11 +8,19 @@ public class DataManager {
         this.states = new ArrayList<State>();
     }
 
-    public List<State> getState() {
+    public int stateIndex(String name) {
+        for (int i = 0; i < states.size(); i++) {
+            State state = states.get(i);
+            if(state.getName().equals(name)) return i;
+        }
+        return -1;
+    }
+
+    public List<State> getStates() {
         return states;
     }
 
-    public void add(State state){
+    public void add(State state) {
         states.add(state);
     }
 

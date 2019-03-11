@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,29 +53,56 @@ public class Utils {
             String fields = electionData[i].substring(electionData[i].indexOf(",") + 1);
             String newField = deleteUnnecessary(fields);
             String[] split = newField.split(",");
-            Election2016 newElection = new Election2016(Double.parseDouble(split[1]), Double.parseDouble(split[2]), Double.parseDouble(split[3]));
-
+            Election2016 newElection = new Election2016(Double.parseDouble(split[0]), Double.parseDouble(split[1]), Double.parseDouble(split[2]));
+            County county = county(data, split, 7, 9, 8);
+            county.setVote2016(newElection);
         }
-        for (int i = 6; i < educationData.length - 10; i++) {
-            String fields = deleteUnnecessary(educationData[i]);
+        for (int i = 5; i < educationData.length - 9; i++) {
+            String fields = removeParentheses(educationData[i]);
             String[] split = fields.split(",");
-            Education2016 newEducation = new Education2016(Double.parseDouble([43]))
-//            int indexOf = educationData[i].indexOf(",");
-//            String state = educationData[i].substring(indexOf + 1, indexOf + 3);
-//            if (!states.contains(state)) {
-//                State newState = new State(state);
-//                educationData[i] = removeParentheses(educationData[i]);
-//
-//                String stateName = educationData[i].substring(indexOf + 4, educationData[i].indexOf(",", indexOf + 4));
-//                int
-//                newState.addCounty(stateName, educationData[i].substring(0, indexOf), );
-//                states.add(newState);
-//            }
-//
-//            states.get(states.size() - 1).addCounty();
+            try {
+                Education2016 newEducation = new Education2016(Double.parseDouble(split[43]), Double.parseDouble(split[44]), Double.parseDouble(split[45]), Double.parseDouble(split[46]));
+                County county = county(data, split, 1, 0, 2);
+                county.setEduc2016(newEducation);
+            } catch (Exception e) {
+                System.out.println("Education error " + i + " " + split[i]);
+            }
         }
-        for (int i = 9; i < employmentData.length - 10; i++) {
+        for (int i = 9; i < employmentData.length; i++) {
+            String fields = removeParentheses(employmentData[i]);
+//            String newField = removeMoney(fields);
+            String[] split = fields.split(",");
+            try {
+                Employment2016 newEmployment = new Employment2016(Integer.parseInt(split[42].trim()), Integer.parseInt(split[43].trim()), Integer.parseInt(split[44].trim()), Double.parseDouble(split[45].trim()));
+                County county = county(data, split, 1, 0, 2);
+                county.setEmploy2016(newEmployment);
+            } catch (Exception e) {
+                System.out.println("employment error " + i + " " + split);
+            }
+        }
+        return data;
+    }
 
+    private static County county(DataManager data, String[] split, int stateIndex, int fipsIndex, int countyIndex) {
+        String stateName = split[stateIndex];
+        int index = data.stateIndex(stateName);
+        State newState;
+        if (index < 0) {
+            newState = new State(stateName);
+        } else {
+            newState = data.getStates().get(stateIndex);
+        }
+
+        int fips = Integer.parseInt(split[fipsIndex]);
+        int cIndex = newState.countyIndex(fips);
+        if (cIndex == -1) {
+            String countyName = split[countyIndex];
+            if (endsInCapital(countyName)) countyName = countyName.substring(0, countyName.length() - 3);
+            County county = new County(countyName, fips);
+            newState.addCounty(county);
+            return county;
+        } else {
+            return newState.getCounties().get(countyIndex);
         }
     }
 
@@ -113,5 +141,10 @@ public class Utils {
         if (substring.equals(",")) return "";
         if (substring.indexOf(",") < 0) return substring;
         return deleteComma(substring.substring(0, 1)) + deleteComma(substring.substring(1));
+    }
+
+    private static boolean endsInCapital(String s) {
+        char c = s.charAt(s.length() - 1);
+        return c >= 'A' && c <= 'Z';
     }
 }

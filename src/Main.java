@@ -8,7 +8,7 @@ public class Main {
 
         DataManager essentialData = Utils.parseEssentialData(Election, Education, Employment);
 
-        for (State state: essentialData.getState()) {
+        for (State state: essentialData.getStates()) {
             for (County county : state.getCounties()){
                 System.out.println(state.getName() + "," + county.toString());
             }
