@@ -8,9 +8,9 @@ public class County {
     public County(String name, int fips) {
         this.name = name;
         this.fips = fips;
-        this.vote2016 = vote2016;
-        this.educ2016 = educ2016;
-        this.employ2016 = employ2016;
+        this.vote2016 = new Election2016(0,0,0);
+        this.educ2016 = new Education2016(0,0,0,0);
+        this.employ2016 = new Employment2016(0,0,0,0);
     }
 
     public String getName() {
@@ -55,12 +55,9 @@ public class County {
 
     @Override
     public String toString() {
-        return "County{" +
-                "name='" + name + '\'' +
-                ", fips=" + fips +
-                ", vote2016=" + getVote2016().toString() +
-                ", educ2016=" + getEduc2016().toString() +
-                ", employ2016=" + getEmploy2016().toString() +
-                '}';
+        return name + ", " + fips +
+                ", vote2016= " + getVote2016().toString() +
+                ", educ2016= " + getEduc2016().toString() +
+                ", employ2016= " + getEmploy2016().toString();
     }
 }

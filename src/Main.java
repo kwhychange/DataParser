@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -8,12 +9,14 @@ public class Main {
 
         DataManager essentialData = Utils.parseEssentialData(Election, Education, Employment);
 
-        for (State state: essentialData.getStates()) {
-            for (County county : state.getCounties()){
+        int count = 0;
+        for (State state : essentialData.getStates()) {
+            for (County county : state.getCounties()) {
                 System.out.println(state.getName() + "," + county.toString());
+                count++;
             }
         }
-
+        System.out.println(count);
 //        ArrayList<ElectionResult> results= Utils.parse2016ElectionResults(Election);
 //        for(ElectionResult result:results){
 //            System.out.println(result.toString());

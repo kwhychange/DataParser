@@ -1,4 +1,3 @@
-import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,27 +56,26 @@ public class Utils {
             County county = county(data, split, 7, 9, 8);
             county.setVote2016(newElection);
         }
-        for (int i = 5; i < educationData.length - 9; i++) {
+        for (int i = 5; i < educationData.length - 10; i++) {
             String fields = removeParentheses(educationData[i]);
             String[] split = fields.split(",");
             try {
-                Education2016 newEducation = new Education2016(Double.parseDouble(split[43]), Double.parseDouble(split[44]), Double.parseDouble(split[45]), Double.parseDouble(split[46]));
+                Education2016 newEducation = new Education2016(Double.parseDouble(split[39]), Double.parseDouble(split[40]), Double.parseDouble(split[41]), Double.parseDouble(split[42]));
                 County county = county(data, split, 1, 0, 2);
                 county.setEduc2016(newEducation);
             } catch (Exception e) {
-                System.out.println("Education error " + i + " " + split[i]);
+                System.out.println("Education error " + i);
             }
         }
         for (int i = 9; i < employmentData.length; i++) {
             String fields = removeParentheses(employmentData[i]);
-//            String newField = removeMoney(fields);
             String[] split = fields.split(",");
             try {
                 Employment2016 newEmployment = new Employment2016(Integer.parseInt(split[42].trim()), Integer.parseInt(split[43].trim()), Integer.parseInt(split[44].trim()), Double.parseDouble(split[45].trim()));
                 County county = county(data, split, 1, 0, 2);
                 county.setEmploy2016(newEmployment);
             } catch (Exception e) {
-                System.out.println("employment error " + i + " " + split);
+                System.out.println("employment error " + i);
             }
         }
         return data;
@@ -87,10 +85,11 @@ public class Utils {
         String stateName = split[stateIndex];
         int index = data.stateIndex(stateName);
         State newState;
-        if (index < 0) {
+        if (index == -1) {
             newState = new State(stateName);
+            data.add(newState);
         } else {
-            newState = data.getStates().get(stateIndex);
+            newState = data.getStates().get(index);
         }
 
         int fips = Integer.parseInt(split[fipsIndex]);
@@ -102,7 +101,7 @@ public class Utils {
             newState.addCounty(county);
             return county;
         } else {
-            return newState.getCounties().get(countyIndex);
+            return newState.getCounties().get(cIndex);
         }
     }
 
@@ -116,10 +115,6 @@ public class Utils {
             secondParen = string.indexOf("\"", firstParen + 1);
         }
         return string;
-    }
-
-    private static String removeMoney(String string) {
-        return string.substring(0, string.indexOf("$")) + string.substring(string.indexOf("$") + 1);
     }
 
     private static String deleteUnnecessary(String fields) {

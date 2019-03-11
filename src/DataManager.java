@@ -11,7 +11,7 @@ public class DataManager {
     public int stateIndex(String name) {
         for (int i = 0; i < states.size(); i++) {
             State state = states.get(i);
-            if(state.getName().equals(name)) return i;
+            if (state.getName().equals(name)) return i;
         }
         return -1;
     }

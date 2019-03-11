@@ -35,8 +35,6 @@ public class Election2016 {
 
     @Override
     public String toString() {
-        return getDemVotes() +
-                "," + getGopVotes() +
-                "," + getTotalVotes();
+        return getDemVotes() + "," + getGopVotes() + "," + getTotalVotes();
     }
 }
