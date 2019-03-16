@@ -20,24 +20,45 @@ public class Utils {
         return output.toString();
     }
 
-//    public static ArrayList<ElectionResult> parse2016ElectionResults(String data) {
-//        ArrayList<ElectionResult> results = new ArrayList<ElectionResult>();
-//
-//        String[] individualData = data.split("\n");
-//
-//        for (int i = 1; i < individualData.length; i++) {
-//            String fields = individualData[i].substring(individualData[i].indexOf(",") + 1);
-//            String newField = deleteUnnecessary(fields);
-//
-//            //hard coding everything
-//            String[] splitFields = newField.split(",");
-//            ElectionResult addNew = new ElectionResult(Double.parseDouble(splitFields[0]), Double.parseDouble(splitFields[1]), Double.parseDouble(splitFields[2]),
-//                    Double.parseDouble(splitFields[3]), Double.parseDouble(splitFields[4]), Integer.parseInt(splitFields[5]), Double.parseDouble(splitFields[6]),
-//                    splitFields[7], splitFields[8], Integer.parseInt(splitFields[9]));
-//            results.add(addNew);
-//        }
-//        return results;
-//    }
+    public static ArrayList<EducationResult> parseEducationResults(String data) {
+        ArrayList<EducationResult> results = new ArrayList<>();
+
+        String[] individualData = data.split("\n");
+
+        for (int i = 5; i < individualData.length - 10; i++) {
+            String fields = removeParentheses(individualData[i]);
+            String[] split = fields.split(",");
+
+            try {
+                EducationResult addNew = new EducationResult(split[1], split[2], Double.parseDouble(split[35]), Double.parseDouble(split[36]), Double.parseDouble(split[37]), Double.parseDouble(split[38]),
+                        +Double.parseDouble(split[39]), Double.parseDouble(split[40]), Double.parseDouble(split[41]), Double.parseDouble(split[42]),
+                        +Double.parseDouble(split[43]), Double.parseDouble(split[44]), Double.parseDouble(split[45]), Double.parseDouble(split[46]));
+                results.add(addNew);
+            } catch (Exception e) {
+                System.out.println("error " + i);
+            }
+        }
+        return results;
+    }
+
+    public static ArrayList<ElectionResult> parse2016ElectionResults(String data) {
+        ArrayList<ElectionResult> results = new ArrayList<ElectionResult>();
+
+        String[] individualData = data.split("\n");
+
+        for (int i = 1; i < individualData.length; i++) {
+            String fields = individualData[i].substring(individualData[i].indexOf(",") + 1);
+            String newField = deleteUnnecessary(fields);
+
+            //hard coding everything
+            String[] splitFields = newField.split(",");
+            ElectionResult addNew = new ElectionResult(Double.parseDouble(splitFields[0]), Double.parseDouble(splitFields[1]), Double.parseDouble(splitFields[2]),
+                    Double.parseDouble(splitFields[3]), Double.parseDouble(splitFields[4]), Integer.parseInt(splitFields[5]), Double.parseDouble(splitFields[6]),
+                    splitFields[7], splitFields[8], Integer.parseInt(splitFields[9]));
+            results.add(addNew);
+        }
+        return results;
+    }
 
     public static DataManager parseEssentialData(String election, String education, String employment) {
         DataManager data = new DataManager();

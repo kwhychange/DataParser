@@ -7,19 +7,12 @@ public class Main {
         String Education = Utils.readFileAsString("data/Education.csv");
         String Employment = Utils.readFileAsString("data/Unemployment.csv");
 
-        DataManager essentialData = Utils.parseEssentialData(Election, Education, Employment);
+        ArrayList<EducationResult> results = Utils.parseEducationResults(Education);
 
-        int count = 0;
-        for (State state : essentialData.getStates()) {
-            for (County county : state.getCounties()) {
-                System.out.println(state.getName() + "," + county.toString());
-                count++;
-            }
+//        int count = 0;
+        for (EducationResult result : results) {
+            System.out.println(result.toString());
         }
-        System.out.println(count);
-//        ArrayList<ElectionResult> results= Utils.parse2016ElectionResults(Election);
-//        for(ElectionResult result:results){
-//            System.out.println(result.toString());
-//        }
+//        System.out.println(count);
     }
 }
