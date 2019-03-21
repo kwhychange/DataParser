@@ -31,11 +31,11 @@ public class Utils {
 
             try {
                 EducationResult addNew = new EducationResult(split[1], split[2], Double.parseDouble(split[35]), Double.parseDouble(split[36]), Double.parseDouble(split[37]), Double.parseDouble(split[38]),
-                        +Double.parseDouble(split[39]), Double.parseDouble(split[40]), Double.parseDouble(split[41]), Double.parseDouble(split[42]),
+                        +Integer.parseInt(split[39]), Integer.parseInt(split[40]), Integer.parseInt(split[41]), Integer.parseInt(split[42]),
                         +Double.parseDouble(split[43]), Double.parseDouble(split[44]), Double.parseDouble(split[45]), Double.parseDouble(split[46]));
                 results.add(addNew);
             } catch (Exception e) {
-                System.out.println("error " + i);
+                System.out.println("error " + (i + 1));
             }
         }
         return results;

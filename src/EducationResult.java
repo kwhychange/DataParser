@@ -1,14 +1,30 @@
 public class EducationResult {
     private String state, areaName;
     private double perNoHS2000, perHS2000, perCollege2000, perBachelor2000;
-    private double noHS1216, HS1216, college1216, bachelor1216;
+    private int noHS1216, HS1216, college1216, bachelor1216;
     private double perNoHS1216, perHS1216, perCollege1216, perBachelor1216;
 
+    public void setNoHS1216(int noHS1216) {
+        this.noHS1216 = noHS1216;
+    }
+
+    public void setHS1216(int HS1216) {
+        this.HS1216 = HS1216;
+    }
+
+    public void setCollege1216(int college1216) {
+        this.college1216 = college1216;
+    }
+
+    public void setBachelor1216(int bachelor1216) {
+        this.bachelor1216 = bachelor1216;
+    }
+
     public String toString() {
-        return "State: " + state + "\nArea Name: " + areaName
-                + "\n" + perNoHS2000 + " " + perHS2000 + " " + perCollege2000 + " " + perBachelor2000 + " "
-                + noHS1216 + " " + HS1216 + " " + college1216 + " " + bachelor1216 + " "
-                + perNoHS1216 + " " + perHS1216 + " " + perCollege1216 + " " + perBachelor1216;
+        return "State: " + state + "\nArea Name: " + areaName + "\n"
+                + perNoHS2000 + ", " + perHS2000 + ", " + perCollege2000 + ", " + perBachelor2000 + ", "
+                + noHS1216 + ", " + HS1216 + ", " + college1216 + ", " + bachelor1216 + ", "
+                + perNoHS1216 + ", " + perHS1216 + ", " + perCollege1216 + ", " + perBachelor1216;
     }
 
     public String getState() {
@@ -59,36 +75,20 @@ public class EducationResult {
         this.perBachelor2000 = perBachelor2000;
     }
 
-    public double getNoHS1216() {
+    public int getNoHS1216() {
         return noHS1216;
     }
 
-    public void setNoHS1216(double noHS1216) {
-        this.noHS1216 = noHS1216;
-    }
-
-    public double getHS1216() {
+    public int getHS1216() {
         return HS1216;
     }
 
-    public void setHS1216(double HS1216) {
-        this.HS1216 = HS1216;
-    }
-
-    public double getCollege1216() {
+    public int getCollege1216() {
         return college1216;
     }
 
-    public void setCollege1216(double college1216) {
-        this.college1216 = college1216;
-    }
-
-    public double getBachelor1216() {
+    public int getBachelor1216() {
         return bachelor1216;
-    }
-
-    public void setBachelor1216(double bachelor1216) {
-        this.bachelor1216 = bachelor1216;
     }
 
     public double getPerNoHS1216() {
@@ -123,7 +123,7 @@ public class EducationResult {
         this.perBachelor1216 = perBachelor1216;
     }
 
-    public EducationResult(String state, String areaName, double perNoHS2000, double perHS2000, double perCollege2000, double perBachelor2000, double noHS1216, double HS1216, double college1216, double bachelor1216, double perNoHS1216, double perHS1216, double perCollege1216, double perBachelor1216) {
+    public EducationResult(String state, String areaName, double perNoHS2000, double perHS2000, double perCollege2000, double perBachelor2000, int noHS1216, int HS1216, int college1216, int bachelor1216, double perNoHS1216, double perHS1216, double perCollege1216, double perBachelor1216) {
         this.state = state;
         this.areaName = areaName;
         this.perNoHS2000 = perNoHS2000;
