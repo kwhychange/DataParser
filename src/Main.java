@@ -6,13 +6,16 @@ public class Main {
         String Election = Utils.readFileAsString("data/2016_Presidential_Results.csv");
         String Education = Utils.readFileAsString("data/Education.csv");
         String Employment = Utils.readFileAsString("data/Unemployment.csv");
+        String Homeless = Utils.readFileAsString("data/State Homelessness Breakdown.csv");
 
-        ArrayList<EducationResult> results = Utils.parseEducationResults(Education);
+//        ArrayList<HomelessData> HomelessResults = Utils.parseHomelessData(Homeless);
+        ArrayList<EducationResult> EducationResults = Utils.parseEducationResults(Education);
 
 //        int count = 0;
-        for (EducationResult result : results) {
+        for (EducationResult result : EducationResults) {
             System.out.println(result.toString());
         }
 //        System.out.println(count);
+
     }
 }

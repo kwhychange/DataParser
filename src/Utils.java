@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,6 +20,44 @@ public class Utils {
         }
 
         return output.toString();
+    }
+
+    public static String restoreInt(int string) {
+        String newString = Integer.toString(string);
+        for (int i = newString.length() - 3; i > 0; i -= 3) {
+            newString = newString.substring(0, i) + "," + newString.substring(i);
+        }
+        return "\"" + newString + "\"";
+    }
+
+    public static String restoreDouble(double string) {
+        String newString = "" + string;
+        int index = newString.indexOf(".");
+        for (int i = index - 3; i > 0; i -= 3) {
+            newString = newString.substring(0, i) + "," + newString.substring(i);
+        }
+        return "\"" + newString + "\"";
+    }
+
+    public static ArrayList<UnemploymentResult> parseUnemployment
+
+    public static ArrayList<HomelessData> parseHomelessData(String data) {
+        ArrayList<HomelessData> results = new ArrayList<>();
+
+        String[] individualData = data.split("\n");
+
+        for (int i = 1; i < individualData.length; i++) {
+            String fields = removeParentheses(individualData[i]);
+            String[] split = fields.split(",");
+
+            try {
+                HomelessData addNew = new HomelessData(split[1], Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                results.add(addNew);
+            } catch (Exception e) {
+                System.out.println("error " + (i + 1));
+            }
+        }
+        return results;
     }
 
     public static ArrayList<EducationResult> parseEducationResults(String data) {

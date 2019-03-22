@@ -21,10 +21,10 @@ public class EducationResult {
     }
 
     public String toString() {
-        return "State: " + state + "\nArea Name: " + areaName + "\n"
-                + perNoHS2000 + ", " + perHS2000 + ", " + perCollege2000 + ", " + perBachelor2000 + ", "
-                + noHS1216 + ", " + HS1216 + ", " + college1216 + ", " + bachelor1216 + ", "
-                + perNoHS1216 + ", " + perHS1216 + ", " + perCollege1216 + ", " + perBachelor1216;
+        return state + "," + areaName + ","
+                + Utils.restoreDouble(perNoHS2000) + "," + Utils.restoreDouble(perHS2000) + "," + Utils.restoreDouble(perCollege2000) + "," + Utils.restoreDouble(perBachelor2000) + ","
+                + Utils.restoreInt(noHS1216) + "," + Utils.restoreInt(HS1216) + "," + Utils.restoreInt(college1216) + "," + Utils.restoreInt(bachelor1216) + ","
+                + Utils.restoreDouble(perNoHS1216) + "," + Utils.restoreDouble(perHS1216) + "," + Utils.restoreDouble(perCollege1216) + "," + Utils.restoreDouble(perBachelor1216);
     }
 
     public String getState() {
