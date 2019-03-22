@@ -39,7 +39,28 @@ public class Utils {
         return "\"" + newString + "\"";
     }
 
-    public static ArrayList<UnemploymentResult> parseUnemployment
+    public static ArrayList<UnemploymentResult> parseUnemployment(String data) {
+        ArrayList<UnemploymentResult> results = new ArrayList<>();
+
+        String[] individualData = data.split("\n");
+
+        for (int i = 8; i < individualData.length; i++) {
+            String fields = removeParentheses(individualData[i]);
+            String[] split = fields.split(",");
+            if (endsInCapital(split[2].trim())) {
+                split[2] = split[2].trim().substring(0, split[2].trim().length() - 3);
+            }
+            try {
+                UnemploymentResult addNew = new UnemploymentResult(split[1].trim(), split[2].trim(), Double.parseDouble(split[9].trim()), Double.parseDouble(split[13].trim()), Double.parseDouble(split[17].trim()),
+                        +Double.parseDouble(split[21].trim()), Double.parseDouble(split[25].trim()), Double.parseDouble(split[29].trim()), Double.parseDouble(split[33].trim()), Double.parseDouble(split[37].trim()),
+                        +Double.parseDouble(split[41].trim()), Double.parseDouble(split[45].trim()), Double.parseDouble(split[49].trim()));
+                results.add(addNew);
+            } catch (Exception e) {
+                System.out.println("error " + (i + 1));
+            }
+        }
+        return results;
+    }
 
     public static ArrayList<HomelessData> parseHomelessData(String data) {
         ArrayList<HomelessData> results = new ArrayList<>();

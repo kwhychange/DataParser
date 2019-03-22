@@ -9,10 +9,11 @@ public class Main {
         String Homeless = Utils.readFileAsString("data/State Homelessness Breakdown.csv");
 
 //        ArrayList<HomelessData> HomelessResults = Utils.parseHomelessData(Homeless);
-        ArrayList<EducationResult> EducationResults = Utils.parseEducationResults(Education);
+//        ArrayList<EducationResult> EducationResults = Utils.parseEducationResults(Education);
+        ArrayList<UnemploymentResult> UnemploymentResults = Utils.parseUnemployment(Employment);
 
 //        int count = 0;
-        for (EducationResult result : EducationResults) {
+        for (UnemploymentResult result: UnemploymentResults) {
             System.out.println(result.toString());
         }
 //        System.out.println(count);
