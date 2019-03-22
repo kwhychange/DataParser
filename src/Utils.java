@@ -72,7 +72,7 @@ public class Utils {
             String[] split = fields.split(",");
 
             try {
-                HomelessData addNew = new HomelessData(split[1], Integer.parseInt(split[3]), Integer.parseInt(split[4]));
+                HomelessData addNew = new HomelessData(split[1], (Double.parseDouble(split[3]))/ (242660171)*100, (Double.parseDouble(split[4]))/(240292912)*100);
                 results.add(addNew);
             } catch (Exception e) {
                 System.out.println("error " + (i + 1));
