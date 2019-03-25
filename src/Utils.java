@@ -22,6 +22,73 @@ public class Utils {
         return output.toString();
     }
 
+    public static ArrayList<UnemploymentResult> parseEmployment(String data){
+        ArrayList<UnemploymentResult> results = new ArrayList<>();
+        String[] individualLines = data.split("\n");
+
+        for (int dataRow = 10; dataRow < individualLines.length; dataRow++) {
+
+            String noCommas = removeDoubleComma(individualLines[dataRow]);
+            String noCommasInQuotes = removeCommasInside(noCommas);
+            String readyForUse = removeQuotes(noCommasInQuotes);
+
+            String[] allData = readyForUse.split(",");
+
+            if (allData.length >= 50) {
+                UnemploymentResult u = new UnemploymentResult(allData[1].trim(), allData[2].trim(), Double.parseDouble(allData[9].trim()), Double.parseDouble(allData[13].trim()),
+                        Double.parseDouble(allData[17].trim()), Double.parseDouble(allData[21].trim()), Double.parseDouble(allData[25].trim()), Double.parseDouble(allData[29].trim()),
+                        Double.parseDouble(allData[33].trim()), Double.parseDouble(allData[37].trim()), Double.parseDouble(allData[41].trim()),
+                        Double.parseDouble(allData[45].trim()), Double.parseDouble(allData[49].trim()));
+
+                results.add(u);
+            }
+        }
+        return  results;
+    }
+
+    public static String removeQuotes(String n){
+        String end = n.replace("\"", "");
+
+        return end;
+    }
+    public static String removeCommasInside(String n){
+
+        String quote = " \"\" ";
+        String end = n;
+
+        for (int i = 0; i < n.length(); i++) {
+            if(n.substring(i,i+1).equals(quote.substring(1, 2))){
+                int secondQuote = findSecondQuote(n, i);
+
+                String replace = n.substring(i, secondQuote +1);
+                String afterReplace = replace.replace(",", "");
+
+                end = end.substring(0,i) + afterReplace + n.substring(secondQuote  );
+                i = secondQuote +1;
+            }
+        }
+
+        return end;
+    }
+
+    private static int findSecondQuote(String n, int start) {
+        String quote = " \"\" ";
+
+        for (int i = start + 1; i < n.length(); i++) {
+            if(n.substring(i,i+1).equals(quote.substring(1, 2))){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static String removeDoubleComma(String n){
+        String end = n;
+        for (int i = 0; i < 6; i++) {
+            end = end.replace(",,", ",");
+        }
+        return end;
+    }
     public static String restoreInt(int string) {
         String newString = Integer.toString(string);
         for (int i = newString.length() - 3; i > 0; i -= 3) {
